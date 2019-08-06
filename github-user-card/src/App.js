@@ -64,7 +64,7 @@ class App extends React.Component {
     return (
       <Box display='flex' flexDirection='column'>
         <SearchForm searchUser={this.searchUser}/>
-        <UserCard key={this.state.ghUser.id} ghUser={this.state.ghUser} ghUserFollowers={this.state.ghUserFollowers}/>
+        <UserCard key={this.state.ghUser.id} ghUser={this.state.ghUser} ghUserFollowers={this.state.ghUserFollowers} searchUser={this.searchUser}/>
       </Box>
     )
   }

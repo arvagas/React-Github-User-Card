@@ -3,7 +3,7 @@ import React from 'react'
 import { Box, Container, Avatar, Typography, Link, Divider } from '@material-ui/core'
 import { userCardStyles } from '../StyledComps'
 
-const UserCard = ({ ghUser, ghUserFollowers }) => {
+const UserCard = ({ ghUser, ghUserFollowers, searchUser }) => {
     const classes = userCardStyles()
 
     return (
@@ -23,7 +23,9 @@ const UserCard = ({ ghUser, ghUserFollowers }) => {
                         Following: {ghUser.following}
                         <Divider />
                         Followers: {ghUserFollowers.map(follower => (
-                            `${follower.login}, `
+                            <span><Link onClick={() => searchUser(follower.login)} style={{cursor:'pointer'}}>
+                                {follower.login}
+                            </Link>, </span>
                         ))}
                         <Divider />
                         Bio: {ghUser.bio ? ghUser.bio : `None`}

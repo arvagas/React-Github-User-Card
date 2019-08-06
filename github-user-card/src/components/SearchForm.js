@@ -19,6 +19,7 @@ class SearchForm extends React.Component {
     searchUserInfo = event => {
         event.preventDefault()
         this.props.searchUser(this.state.search)
+        this.searchInput.value = ''
     }
 
     render() {
@@ -31,6 +32,7 @@ class SearchForm extends React.Component {
                         value={this.search}
                         name='search'
                         onChange={this.handleChanges}
+                        ref={el => {this.searchInput = el}}
                     />
                     <button type="submit">Search</button>
                 </form>
