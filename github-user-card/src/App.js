@@ -14,6 +14,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const userName = 'arvagas'
+
     axios.get(`https://api.github.com/users/${userName}`)
     .then(res => {
       this.setState({ghUser: res.data})
@@ -38,10 +39,10 @@ class App extends React.Component {
   
     return (
       <div>
-        <UserCard key={this.state.ghUser.id} ghUser={this.state.ghUser}/>
-        {this.state.ghUserFollowers.map(follower => (
+        <UserCard key={this.state.ghUser.id} ghUser={this.state.ghUser} ghUserFollowers={this.state.ghUserFollowers}/>
+        {/* {this.state.ghUserFollowers.map(follower => (
           <UserCard key={follower.id} ghUser={follower}/>
-        ))}
+        ))} */}
       </div>
     )
   }

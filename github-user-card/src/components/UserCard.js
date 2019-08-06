@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Box, Container, Avatar, Typography, Link } from '@material-ui/core'
+import { Box, Container, Avatar, Typography, Link, Divider } from '@material-ui/core'
 import { userCardStyles } from '../StyledComps'
 
-const UserCard = ({ ghUser }) => {
+const UserCard = ({ ghUser, ghUserFollowers }) => {
     const classes = userCardStyles()
 
     return (
@@ -17,17 +17,23 @@ const UserCard = ({ ghUser }) => {
                     </Typography>
                     <Typography variant='body2'>
                         Location: {ghUser.location ? ghUser.location : `None`}
-                        <br/>Profile: <Link href={ghUser.html_url}>{ghUser.html_url}</Link>
-                        <br/>Followers: {ghUser.followers}
-                        <br/>Following: {ghUser.following}
-                        <br/>Bio: {ghUser.bio ? ghUser.bio : `None`}
+                        <Divider />
+                        Profile: <Link href={ghUser.html_url}>{ghUser.html_url}</Link>
+                        <Divider />
+                        Following: {ghUser.following}
+                        <Divider />
+                        Followers: {ghUserFollowers.map(follower => (
+                            `${follower.login}, `
+                        ))}
+                        <Divider />
+                        Bio: {ghUser.bio ? ghUser.bio : `None`}
                     </Typography>
                 </Container>
             </Box>
             <img
                 src={`http://ghchart.rshah.org/${ghUser.login}`}
                 alt={`${ghUser.login}'s Github contribution chart`}
-                style={{maxWidth:'700px', width:'100%', alignSelf:'center'}}
+                style={{maxWidth:'702px', width:'100%', maxHeight:'104px', alignSelf:'center'}}
             />
         </Box>
     )
