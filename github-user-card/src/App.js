@@ -24,13 +24,7 @@ class App extends React.Component {
     axios.get(`https://api.github.com/users/${userName}/followers`)
     .then(res => {
       const followerArr = res.data
-      followerArr.map(follower => {
-        axios.get(`https://api.github.com/users/${follower.login}`)
-        .then(followerRes => {
-          this.setState({ghUserFollowers: [...this.state.ghUserFollowers, followerRes.data]})
-        })
-        .catch(err => console.log('Follower API Error: ', err))
-      })
+      this.setState({ghUserFollowers: followerArr})
     })
     .catch(err => console.log('API Error: ', err))
   }
