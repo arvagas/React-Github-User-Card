@@ -23,7 +23,7 @@ const UserCard = ({ ghUser, ghUserFollowers, searchUser }) => {
                         Following: {ghUser.following}
                         <Divider />
                         Followers: {ghUserFollowers.map(follower => (
-                            <span><Link onClick={() => searchUser(follower.login)} style={{cursor:'pointer'}}>
+                            <span key={follower.id}><Link onClick={() => searchUser(follower.login)} style={{cursor:'pointer'}}>
                                 {follower.login}
                             </Link>, </span>
                         ))}
