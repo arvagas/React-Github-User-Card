@@ -22,11 +22,15 @@ const UserCard = ({ ghUser, ghUserFollowers, searchUser }) => {
                         <Divider />
                         Following: {ghUser.following}
                         <Divider />
-                        Followers: {ghUserFollowers.map(follower => (
-                            <span key={follower.id}><Link onClick={() => searchUser(follower.login)} style={{cursor:'pointer'}}>
-                                {follower.login}
-                            </Link>, </span>
-                        ))}
+                        Followers: {ghUser.followers}
+                        {ghUser.followers > 30 ? <p style={{margin:0, textDecoration:'underline'}}>Latest 30 followers:</p> : ''}
+                        <p style={{margin:0}}>
+                            {ghUserFollowers.map(follower => (
+                                <span key={follower.id}><Link onClick={() => searchUser(follower.login)} style={{cursor:'pointer'}}>
+                                    {follower.login}
+                                </Link>, </span>
+                            ))}
+                        </p>
                         <Divider />
                         Bio: {ghUser.bio ? ghUser.bio : `None`}
                     </Typography>
