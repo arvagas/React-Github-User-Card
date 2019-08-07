@@ -7,4 +7,7 @@ export const userCardStyles = makeStyles({
         height: 150,
         alignSelf: 'center',
     },
+    linkFollower: {
+        cursor: 'pointer',
+    },
 })

@@ -11,33 +11,32 @@ const UserCard = ({ ghUser, ghUserFollowers, searchUser }) => {
             <Box display='flex' flexDirection='row' mb={2.4}>
                 <Avatar src={ghUser.avatar_url} className={classes.bigAvatar}/>
                 <Container>
-                    <Typography variant='h5'>{ghUser.name}</Typography>
-                    <Typography variant='subtitle1' fontStyle='italic'>
-                        <Box fontStyle='italic'>{ghUser.login}</Box>
+                    <Typography variant='h5'>{ghUser.name ? ghUser.name : 'Name'}</Typography>
+                    <Typography variant='subtitle1'>
+                        <Box fontStyle='italic'>{ghUser.login ? ghUser.login : 'handle'}</Box>
                     </Typography>
-                    <Typography variant='body2'>
+                    <Typography variant='body2' component='div'>
                         Location: {ghUser.location ? ghUser.location : `None`}
                         <Divider />
-                        Profile: <Link href={ghUser.html_url}>{ghUser.html_url}</Link>
+                        Profile: <Link href={ghUser.html_url}>{ghUser.html_url ? ghUser.html_url : ''}</Link>
                         <Divider />
                         Following: {ghUser.following}
                         <Divider />
                         Followers: {ghUser.followers}
-                        {ghUser.followers > 30 ? <p style={{margin:0, textDecoration:'underline'}}>Latest 30 followers:</p> : ''}
-                        <p style={{margin:0}}>
+                        <br></br>
+                        {ghUser.followers > 30 ? 'Latest 30 followers: ' : ''}
                             {ghUserFollowers.map(follower => (
-                                <span key={follower.id}><Link onClick={() => searchUser(follower.login)} style={{cursor:'pointer'}}>
-                                    {follower.login}
+                                <span><Link key={follower.id} onClick={() => searchUser(follower.login)} className={classes.linkFollower}>
+                                    {follower.login ? follower.login : ''}
                                 </Link>, </span>
                             ))}
-                        </p>
                         <Divider />
                         Bio: {ghUser.bio ? ghUser.bio : `None`}
                     </Typography>
                 </Container>
             </Box>
             <img
-                src={`http://ghchart.rshah.org/${ghUser.login}`}
+                src={`https://ghchart.rshah.org/${ghUser.login}`}
                 alt={`${ghUser.login}'s Github contribution chart`}
                 style={{maxWidth:'702px', width:'100%', maxHeight:'104px', alignSelf:'center'}}
             />
